@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Main Body Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background: #ffffff;
+}
+
+/* ------------------------------------------- */
+/* INTRO SECTION STYLES */
+/* ------------------------------------------- */
+.intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #FFD700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: all 2s ease-in-out;
+    opacity: 1;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.intro-content {
+    color: white;
+    text-align: center;
+}
+
+.text-line-wrapper {
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.text-line {
+    margin: 0;
+    padding: 0;
+    transform: translateY(100%);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro.show-text .text-line {
+    transform: translateY(0);
+}
+
+.intro.show-text .text-line-wrapper:nth-child(2) .text-line {
+    transition-delay: 0.15s;
+}
+
+.intro.fade-out {
+    opacity: 0;
+    background-color: white;
+}
+
+.intro h1 {
+    font-size: 3.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.intro p {
+    font-size: 1.8rem;
+    max-width: 600px;
+    font-weight: 400;
+}
+
+/* ------------------------------------------- */
+/* MAIN CONTENT STYLES */
+/* ------------------------------------------- */
+
+/* --- General Animation Styles --- */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+}
+
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Marquee Animation Styles --- */
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-container {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+}
+
+.marquee-content {
+    display: flex;
+    width: fit-content;
+    animation: marquee-scroll 30s linear infinite;
+}
+
+.marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+.area-card {
+    flex-shrink: 0;
+    width: 320px;
+    height: 400px;
+    margin: 0 1rem;
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.area-card:hover {
+    transform: translateY(-10px);
+}
+
+.area-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 1;
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+/* --- Scroll-to-Top Button --- */
+#scrollTopBtn {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* --- Team Section Styles --- */
+.team-member-hover {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.team-member-hover:hover {
+    color: #d94a40;
+}
+
+.team-photo-popup {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s;
+    z-index: 50;
+    transform: translateY(10px);
+}
+
+.team-member-hover:hover .team-photo-popup {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .team-photo-popup {
+        position: static !important;
+        transform: none !important;
+        margin-top: 1rem;
+        width: 100%;
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .team-member-hover {
+        margin-bottom: 2rem;
+    }
+}
